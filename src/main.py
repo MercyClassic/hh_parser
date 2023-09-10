@@ -52,10 +52,6 @@ def check_regular_conditions(bold_titles: List[Tag]) -> bool:
             ul = bold_titles[texts.index(text)].find_parent('p').find_next_sibling()
             li_tags = ul.find_all('li')
 
-            if not li_tags:
-                """IF NO CONDITIONS => return False"""
-                return False
-
             for li in li_tags:
                 bigger_than = r'(больше|от|>|=>|>=)'
                 at_least = r'(не\s*менее|минимум|не\s*меньше|от)'
