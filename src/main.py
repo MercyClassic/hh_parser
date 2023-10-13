@@ -50,6 +50,8 @@ def check_regular_conditions(bold_titles: List[Tag]) -> bool:
             found_at_least_one_point = True
             """ GET LIST OF CONDITION """
             ul = bold_titles[texts.index(text)].find_parent('p').find_next_sibling()
+            if not ul:
+                return False
             li_tags = ul.find_all('li')
 
             for li in li_tags:
@@ -102,7 +104,7 @@ async def get_vacancy_list(query: str = '') -> List[Tag]:
 
 
 async def main():
-    links = await get_vacancy_list('Python fastapi')
+    links = await get_vacancy_list(input('Введите строку для поиска: '))
     tasks = await create_tasks(links)
     await asyncio.gather(*tasks)
 
